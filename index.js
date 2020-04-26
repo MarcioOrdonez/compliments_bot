@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 
-const token = 'NzAzOTYyNjk4MzIwNDQ1NDcx.XqWOjg.6A09ShldL_BdiescigNLscCJp_A';
+const token = '';
 const compliments = ['incrivel', 'linda', 'maravilhosa', 'D+', 'Muito legal', 'Que nunca votaria no babu'];
 
 bot.on('ready', () =>{
