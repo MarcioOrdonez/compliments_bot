@@ -1,7 +1,8 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
+require('dotenv').config();
 
-const token = process.env.Token || '';
+const token = process.env.TOKEN || '';
 const compliments = ['incrivel', 'linda', 'maravilhosa', 'D+', 'Muito legal', 'Que nunca votaria no babu'];
 
 bot.on('ready', () =>{
