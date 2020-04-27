@@ -2,11 +2,14 @@ const Discord = require('discord.js');
 const bot = new Discord.Client();
 const request = require('request');
 require('dotenv').config();
+const ytdl = require('ytdl-core');
+
 
 const token = process.env.TOKEN || '';
 const compliments = ['incrivel', 'linda', 'maravilhosa', 'D+', 'Muito legal', 'Que nunca votaria no babu'];
 const doggy = 'https://dog.ceo/api/breeds/image/random';
 const catty = 'https://api.thecatapi.com/v1/images/search';
+const queue = ['https://www.youtube.com/watch?v=jkJ5q2NxHf4'];
 
 bot.on('ready', () =>{
     console.log('Bot is running! ');
@@ -34,6 +37,26 @@ bot.on('message', msg =>{
             return msg.reply(body[0].url);
         })
     }
+    var args = msg.content.substring().split(" ");
+    if (args[0]==='!DJ'){
+        switch(args[1]){
+            case 'play':
+                function start(connection, msg){
+                    connection.play(ytdl(queue[0], {filter:'audioonly'}));
+                }
+
+                if(!msg.member.voice.channel){
+                    return msg.reply('Voce precisa estar em um canal pra festa poder comerçar rs');
+                }
+                if(!msg.guild.voiceConnection) msg.member.voice.channel.join().then( (connection)=>{
+                    start(connection, msg);
+                })
+            break;
+        }
+    }
+
+
+
 })
 
 bot.login(token);
