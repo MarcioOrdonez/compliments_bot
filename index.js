@@ -9,6 +9,7 @@ const token = process.env.TOKEN || '';
 const compliments = ['incrivel', 'linda', 'maravilhosa', 'D+', 'Muito legal', 'Que nunca votaria no babu'];
 const doggy = 'https://dog.ceo/api/breeds/image/random';
 const catty = 'https://api.thecatapi.com/v1/images/search';
+const piggy = 'https://pigs.p.rapidapi.com/random';
 const queue = ['https://www.youtube.com/watch?v=jkJ5q2NxHf4','https://www.youtube.com/watch?v=r9tBBvvLkd8'];
 var volume = 0.5;
 bot.on('ready', () =>{
@@ -35,6 +36,15 @@ bot.on('message', msg =>{
                 return msg.reply('Deu erro :(');
             }
             return msg.reply(body[0].url);
+        })
+    }
+    if (msg.content.toLowerCase().includes('oinc')){
+        var header = {"x-rapidapi-host":"pigs.p.rapidapi.com","x-rapidapi-key":"e693c94b94mshedbaac8ce20c007p18b684jsnf22d5739dd6f"};
+        request.get({url:piggy,headers:header,json: true}, (err, res, body)=>{
+            if(err){
+                return msg.reply('Deu erro :(');
+            }
+            return msg.reply(body.source);
         })
     }
     var args = msg.content.substring().split(" ");
