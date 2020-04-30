@@ -21,7 +21,7 @@ bot.on('message', msg =>{
     if (msg.content.toLowerCase().includes("estou triste")){
         msg.reply('Não fique triste voce é uma pessoa '+compliments[Math.floor(Math.random()*compliments.length)]);
     }
-    if (msg.content.includes('AU')){
+    if (msg.content.toLowerCase().includes('auau')){
         request(doggy, {json: true}, (err, res, body)=>{
             if(err){
                 return msg.reply('Deu erro :(');
@@ -29,7 +29,7 @@ bot.on('message', msg =>{
             return msg.reply(body.message);
         })
     }
-    if (msg.content.includes('MIAU')){
+    if (msg.content.toLowerCase().includes('miau')){
         request(catty, {json: true}, (err, res, body)=>{
             if(err){
                 return msg.reply('Deu erro :(');
