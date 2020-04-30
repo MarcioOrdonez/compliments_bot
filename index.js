@@ -9,7 +9,7 @@ const token = process.env.TOKEN || '';
 const compliments = ['incrivel', 'linda', 'maravilhosa', 'D+', 'Muito legal', 'Que nunca votaria no babu'];
 const doggy = 'https://dog.ceo/api/breeds/image/random';
 const catty = 'https://api.thecatapi.com/v1/images/search';
-const piggy = 'https://pigs.p.rapidapi.com/random';
+const mobiles = ["A.Sate","Aduka","Armor","Bigfoot","Boomer Launcher","Grub","Ice","J.Frog","J.D","Kalsiddon","Lighting","Mage","Nak","Raon Launcher","Trico","Turtle","Phoenix","Maya","Wolf","Tiburon","Blue Whale","Frank","Carrior","Shadow Walker","Princess","Assassin"];
 const queue = ['https://www.youtube.com/watch?v=jkJ5q2NxHf4','https://www.youtube.com/watch?v=r9tBBvvLkd8'];
 var volume = 0.5;
 bot.on('ready', () =>{
@@ -38,17 +38,35 @@ bot.on('message', msg =>{
             return msg.reply(body[0].url);
         })
     }
-    if (msg.content.toLowerCase().includes('oinc')){
-        var header = {"x-rapidapi-host":"pigs.p.rapidapi.com","x-rapidapi-key":"e693c94b94mshedbaac8ce20c007p18b684jsnf22d5739dd6f"};
-        request.get({url:piggy,headers:header,json: true}, (err, res, body)=>{
-            if(err){
-                return msg.reply('Deu erro :(');
-            }
-            return msg.reply(body.source);
-        })
-    }
     var args = msg.content.substring().split(" ");
-    if (args[0]==='!DJ'){
+    if (args[0].toLowerCase() === "gb"){
+        if((args.length>=3)&&(args.length%2!=0)){
+            var time1 = [];
+            var time2 = [];
+            for(var i=0;i<args.length;i++){
+                time1.push(args.splice(Math.floor(Math.random()*(args.length-1)) + 1,1)[0]);
+                if(args.length == 2){
+                    time2.push(args.splice(1,1)[0]);
+                }
+                else{
+                    time2.push(args.splice(Math.floor(Math.random()*(args.length-1)) + 1,1)[0]);
+                }
+            }
+            var times = "Time 1: ";
+            for(var i=0;i<time1.length;i++){
+                times = times + " " + time1[i] + " de " + mobiles[Math.floor(Math.random()*mobiles.length)];
+            }
+            times = times + "\n Time 2: "
+            for(var i=0;i<time2.length;i++){
+                times = times + " " + time2[i] + " de " + mobiles[Math.floor(Math.random()*mobiles.length)];
+            }
+            return msg.reply(times);
+        }
+        else{
+            return msg.reply('Numero insuficiente de jogadores :(');
+        }
+    }
+    if (args[0] === '!DJ'){
         switch(args[1]){
             case 'play':
                 function start(connection, msg){
