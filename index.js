@@ -10,7 +10,7 @@ const compliments = ['incrivel', 'linda', 'maravilhosa', 'D+', 'Muito legal', 'Q
 const doggy = 'https://dog.ceo/api/breeds/image/random';
 const catty = 'https://api.thecatapi.com/v1/images/search';
 const mobiles = ["A.Sate","Aduka","Armor","Bigfoot","Boomer Launcher","Grub","Ice","J.Frog","J.D","Kalsiddon","Lighting","Mage","Nak","Raon Launcher","Trico","Turtle","Phoenix","Maya","Wolf","Tiburon","Blue Whale","Frank","Carrior","Shadow Walker","Princess","Assassin"];
-const queue = ['https://www.youtube.com/watch?v=jkJ5q2NxHf4','https://www.youtube.com/watch?v=r9tBBvvLkd8'];
+const queue = ['https://www.youtube.com/watch?v=jkJ5q2NxHf4&ab_channel=3BocasAudio','https://www.youtube.com/watch?v=r9tBBvvLkd8'];
 var volume = 0.5;
 bot.on('ready', () =>{
     console.log('Bot is running! ');
@@ -106,6 +106,21 @@ bot.on('message', msg =>{
 
 
 
+})
+
+bot.on("voiceStateUpdate", async (channelUpdate) => {
+    if(!channelUpdate.guild.voiceConnection) 
+    try {
+        const conn = await channelUpdate.member.voice.channel?.join();
+        const player = {};
+         
+        player.queue = "https://www.youtube.com/watch?v=W8ab00LC-JQ";
+        player.dispatcher = conn?.play(ytdl(player.queue, {type:'audioonly', range:{end: 100000}}), {volume});
+
+    }
+catch (err) {
+    console.log(err)
+    }
 })
 
 bot.login(token);
