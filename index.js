@@ -102,9 +102,6 @@ bot.on('message', msg =>{
             break;
         }
     }
-
-
-
 })
 
 bot.on("voiceStateUpdate", async (channelUpdate) => {
@@ -114,7 +111,7 @@ bot.on("voiceStateUpdate", async (channelUpdate) => {
         const player = {};
          
         player.queue = "https://www.youtube.com/watch?v=W8ab00LC-JQ";
-        player.dispatcher = conn?.play(ytdl(player.queue, {type:'audioonly', range:{end: 100000}}), {volume});
+        player.dispatcher = conn?.play(ytdl(player.queue, {type:'audioonly', range:{end: 150000}}), {volume});
 
     }
 catch (err) {
