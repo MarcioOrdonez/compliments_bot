@@ -110,7 +110,6 @@ bot.on("voiceStateUpdate", async (VoiceState) => {
         try {
             const conn = await VoiceState.member.voice.channel?.join();
             const player = {};
-             
             player.queue = "https://www.youtube.com/watch?v=W8ab00LC-JQ";
             player.dispatcher = conn?.play(ytdl(player.queue, {type:'audioonly', range:{end: 150000}}), {volume});
         }
